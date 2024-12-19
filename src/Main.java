@@ -1,15 +1,51 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        String nome = "Luiz Henrique";
+        String tipoConta = "Corrente";
+        double saldo = 2569.00;
+        int opcao = 0;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        System.out.println("***************************");
+        System.out.println("\nNome do Cliente: " + nome);
+        System.out.println("Tipo da Conta: " + tipoConta);
+        System.out.println("Saldo Atual: " + saldo);
+        System.out.println("\n***************************");
+
+        String menu = """
+                Digite sua opção:
+                1 - Consultar Saldo
+                2 - Tranferir Valor
+                3 - Receber Valor
+                4 - Sair
+                """;
+
+        Scanner leitura = new Scanner(System.in);
+        while (opcao != 4) {
+            System.out.println(menu);
+            opcao = leitura.nextInt();
+
+            if (opcao == 1){
+                System.out.println("O saldo atualizado é " + saldo);
+            } else if (opcao == 2) {
+                System.out.println("Qual o valor que deseja tranferir?");
+                double valor = leitura.nextDouble();
+                if (valor > saldo){
+                    System.out.println("Não há saldo para realizar a tranferência.");
+                }else{
+                    saldo -= valor;
+                    System.out.println("Novo saldo " + saldo);
+                }
+
+            }else if(opcao == 3){
+                System.out.println("Valor recebido: ");
+                double valor = leitura.nextDouble();
+                saldo += valor;
+                System.out.println("Novo saldo " + saldo);
+            } else if (opcao != 4) {
+                System.out.println("Opção Inválida!");
+            }
         }
     }
 }
